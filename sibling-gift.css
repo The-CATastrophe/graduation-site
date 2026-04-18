@@ -191,7 +191,7 @@ body {
 
 .qr-popup {
   position: absolute;
-  top: calc(100% + 1rem);
+  bottom: calc(100% + 1rem);
   left: 50%;
   transform: translateX(-50%) scale(0.92);
   width: min(90vw, 20rem);
@@ -209,6 +209,8 @@ body {
   pointer-events: none;
   transition: transform 220ms ease, opacity 220ms ease;
   z-index: 25;
+  max-height: calc(100vh - 10rem);
+  overflow: hidden;
 }
 .qr-popup.active {
   opacity: 1;
