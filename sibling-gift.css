@@ -190,10 +190,10 @@ body {
 }
 
 .qr-popup {
-  position: absolute;
-  bottom: calc(100% + 1rem);
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%) scale(0.92);
+  transform: translate(-50%, -50%) scale(0.92);
   width: min(90vw, 20rem);
   max-width: 20rem;
   padding: 1rem;
@@ -208,13 +208,13 @@ body {
   opacity: 0;
   pointer-events: none;
   transition: transform 220ms ease, opacity 220ms ease;
-  z-index: 25;
+  z-index: 30;
   max-height: calc(100vh - 10rem);
   overflow: hidden;
 }
 .qr-popup.active {
   opacity: 1;
-  transform: translateX(-50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   pointer-events: auto;
 }
 .qr-popup .qr-close {
@@ -523,7 +523,6 @@ body {
   }
   .qr-popup {
     width: min(94vw, 20rem);
-    top: calc(100% + 0.75rem);
     padding: 0.85rem;
   }
   .qr-popup .qr-close {
