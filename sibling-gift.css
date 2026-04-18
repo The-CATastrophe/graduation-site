@@ -39,13 +39,16 @@ body {
 
 .hero-main {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 3rem; /* Fallback for clamp */
-  font-size: clamp(2.8rem, 10vw, 6rem);
+  font-size: 2.75rem; /* Fallback for clamp */
+  font-size: clamp(2rem, 8vw, 5rem);
+  max-width: min(100%, 92vw);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   font-weight: 700;
   color: #c9a84c;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  line-height: 1;
+  line-height: 1.05;
   background: linear-gradient(
     135deg,
     #b8860b 0%,
@@ -505,13 +508,16 @@ body {
     padding: 16px;
   }
   .hero {
-    margin-bottom: 40px;
+    margin-bottom: 36px;
   }
   .hero-divider {
     width: 95%;
   }
   .hero-main {
-    font-size: clamp(2.4rem, 14vw, 5rem);
+    font-size: clamp(1.8rem, 10vw, 4.2rem);
+    letter-spacing: 0.04em;
+    max-width: 100%;
+    padding: 0 4px;
   }
   .hero-sub {
     font-size: clamp(0.95rem, 4vw, 1.3rem);
