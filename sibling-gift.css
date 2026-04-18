@@ -9,10 +9,12 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  min-height: -webkit-fill-available; /* iOS Safari vh bug fix */
   font-family: 'Quicksand', sans-serif;
   -webkit-font-smoothing: antialiased;
   padding: 24px;
   overflow-x: hidden;
+  overflow-wrap: break-word; /* Prevent long words from overflowing */
 }
 
 /* ── HERO TEXT (screenshot style) ── */
@@ -27,8 +29,17 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .hero-main {
   font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem; /* Fallback for clamp */
   font-size: clamp(2.8rem, 10vw, 6rem);
   font-weight: 700;
   color: #c9a84c;
@@ -56,6 +67,12 @@ body {
   50% { background-position: 100% 50%; }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .hero-main {
+    animation: none;
+  }
+}
+
 .hero-divider {
   width: 85%;
   height: 3px;
@@ -75,6 +92,7 @@ body {
 
 .hero-sub {
   font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem; /* Fallback for clamp */
   font-size: clamp(1rem, 3.5vw, 1.6rem);
   font-weight: 600;
   letter-spacing: 0.28em;
@@ -95,6 +113,13 @@ body {
 }
 @keyframes fadeUp {
   to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coin-section {
+    animation: none;
+    opacity: 1;
+  }
 }
 
 .coin-label {
@@ -423,6 +448,13 @@ body {
   opacity: 0;
   animation: fadeUp 0.8s ease 1.4s forwards;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .credits {
+    animation: none;
+    opacity: 1;
+  }
+}
 .credits-label {
   font-size: 0.68rem;
   font-weight: 700;
@@ -434,6 +466,8 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .credits-link {
   display: inline-flex;

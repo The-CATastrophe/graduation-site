@@ -1,8 +1,9 @@
 // ── CONFETTI on load ─
 window.addEventListener('load', () => {
   setTimeout(() => {
+    const isMobile = window.innerWidth < 768;
     confetti({
-      particleCount: 80,
+      particleCount: isMobile ? 50 : 80,
       spread: 65,
       origin: { y: 0.3 },
       colors: ['#c9a84c', '#ffe680', '#fff7cc', '#ffffff', '#b8860b']
@@ -16,6 +17,8 @@ const qrPopup = document.getElementById('qrPopup');
 const qrClose = document.getElementById('qrClose');
 const coin = tipButton.querySelector('.coin');
 coin.maxMoveLoopCount = 90;
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const resetCoin = () => {
   coin.style.setProperty('--coin-x-multiplier', 0);
@@ -34,6 +37,14 @@ const closeQrPopup = () => {
 };
 
 const flipCoinLoop = () => {
+  if (prefersReducedMotion) {
+    // Skip animation, directly show QR
+    tipButton.classList.add('coin-landed');
+    coin.style.setProperty('opacity', 0);
+    qrPopup.classList.add('active');
+    return;
+  }
+
   coin.moveLoopCount++;
   let pct = coin.moveLoopCount / coin.maxMoveLoopCount;
   coin.angle = -coin.maxFlipAngle * Math.pow((pct - 1), 2) + coin.maxFlipAngle;
@@ -59,8 +70,9 @@ const flipCoinLoop = () => {
     coin.style.setProperty('opacity', 0);
 
     setTimeout(() => {
+      const isMobile = window.innerWidth < 768;
       confetti({
-        particleCount: 40,
+        particleCount: isMobile ? 25 : 40,
         spread: 50,
         origin: { y: 0.65 },
         colors: ['#c9a84c', '#ffe680', '#ffffff']
